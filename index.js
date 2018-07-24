@@ -1,37 +1,15 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const request = require('request')
-const app = express()
-const port = process.env.PORT || 4000
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-app.post('/webhook', (req, res) => {
-    let reply_token = req.body.events[0].replyToken
-    reply(reply_token)
-    res.sendStatus(200)
-})
-app.listen(port)
-function reply(reply_token) {
-    let headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'cGSvZULt+kZbdp+iDe53qV11sZNINaR0iS30yn368okhpZuiU2YCKoPKWB89XzPM6pGRUAr/z5oP2+j1T+8tE5c9tj4IKPucB5LADnh7pa7e6PTmIRuSOcwwUQRRRD4aldf8jXE78lT5+t4x4fwRjQdB04t89/1O/w1cDnyilFU='
-    }
-    let body = JSON.stringify({
-        replyToken: reply_token,
-        messages: [{
-            type: 'text',
-            text: 'Hello'
-        },
-        {
-            type: 'text',
-            text: 'How are you?'
-        }]
-    })
-    request.post({
-        url: 'https://api.line.me/v2/bot/message/reply',
-        headers: headers,
-        body: body
-    }, (err, res, body) => {
-        console.log('status = ' + res.statusCode);
-    });
-}
+var app = require('express')();
+
+var port = process.env.PORT || 7777;
+
+app.get('/', function (req, res) {
+    res.send('<h1>Hello Node.js</h1>');
+});
+
+app.get('/index', function (req, res) {
+    res.send('<h1>This is index page</h1>');
+});
+
+app.listen(port, function() {
+    console.log('Starting node.js on port ' + port);
+});
