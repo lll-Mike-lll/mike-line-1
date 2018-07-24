@@ -1,13 +1,10 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 
-const CHANNEL_ACCESS_TOKEN = process.env.CHANNEL_ACCESS_TOKEN ? process.env.CHANNEL_ACCESS_TOKEN : 'cGSvZULt+kZbdp+iDe53qV11sZNINaR0iS30yn368okhpZuiU2YCKoPKWB89XzPM6pGRUAr/z5oP2+j1T+8tE5c9tj4IKPucB5LADnh7pa7e6PTmIRuSOcwwUQRRRD4aldf8jXE78lT5+t4x4fwRjQdB04t89/1O/w1cDnyilFU=';
-const CHANNEL_SECRET = process.env.CHANNEL_SECRET ? process.env.CHANNEL_SECRET : 'e2c01a6936c650c853d09d5d92e05d18';
-
 // create LINE SDK config from env variables
 const config = {
-  channelAccessToken: CHANNEL_ACCESS_TOKEN,
-  channelSecret: CHANNEL_SECRET,
+  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.CHANNEL_SECRET,
 };
 
 // create LINE SDK client
