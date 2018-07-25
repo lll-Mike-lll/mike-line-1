@@ -7,7 +7,7 @@ const CHANNEL_SECRET = process.env.CHANNEL_SECRET ? process.env.CHANNEL_SECRET :
 // create LINE SDK config from env variables
 const config = {
   channelAccessToken: CHANNEL_ACCESS_TOKEN,
-  channelSecret: CHANNEL_SECRET
+  channelSecret: CHANNEL_SECRET,
 };
 
 // create LINE SDK client
@@ -37,7 +37,7 @@ function handleEvent(event) {
   }
 
   // create a echoing text message
-  const echo = { type: 'text', text: 'welcome' };
+  const echo = { type: 'text', text: event.message.text };
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
