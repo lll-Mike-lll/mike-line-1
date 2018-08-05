@@ -1,8 +1,8 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
-
-const CHANNEL_ACCESS_TOKEN = process.env.CHANNEL_ACCESS_TOKEN ? process.env.CHANNEL_ACCESS_TOKEN : 'cGSvZULt+kZbdp+iDe53qV11sZNINaR0iS30yn368okhpZuiU2YCKoPKWB89XzPM6pGRUAr/z5oP2+j1T+8tE5c9tj4IKPucB5LADnh7pa7e6PTmIRuSOcwwUQRRRD4aldf8jXE78lT5+t4x4fwRjQdB04t89/1O/w1cDnyilFU=';
-const CHANNEL_SECRET = process.env.CHANNEL_SECRET ? process.env.CHANNEL_SECRET : 'e2c01a6936c650c853d09d5d92e05d18';
+//connect mike chat 3
+const CHANNEL_ACCESS_TOKEN = process.env.CHANNEL_ACCESS_TOKEN ? process.env.CHANNEL_ACCESS_TOKEN : 'sSpsxb24h3plvXAGbn20o/eT5KwftT5PJyAtu2+x09+4GvMKPwQUPk/UE+/BuTFJ6pGRUAr/z5oP2+j1T+8tE5c9tj4IKPucB5LADnh7pa419N8E8+Ya6AgDN7CVyQoygRQbOfN8C0Upm4hqDSDpQgdB04t89/1O/w1cDnyilFU=';
+const CHANNEL_SECRET = process.env.CHANNEL_SECRET ? process.env.CHANNEL_SECRET : 'ee350e712e2a04460acfecdc30fbe16d';
 
 // create LINE SDK config from env variables
 const config = {
@@ -27,6 +27,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
       console.error(err);
       res.status(500).end();
     });
+    console.log(req.body.event)
 });
 
 // event handler
@@ -37,7 +38,7 @@ function handleEvent(event) {
   }
 
   // create a echoing text message
-  const echo = { type: 'text', text: 'welcome' };
+  const echo = { type: 'text', text: event.message.id };
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
